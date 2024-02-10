@@ -1,8 +1,9 @@
+import Login from "./auths/login/page";
 
 export default function Home() {
   return (
     <main>
-      Hello World
+      <Login />
     </main>
   );
 }
