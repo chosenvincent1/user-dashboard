@@ -1,6 +1,35 @@
+"use client"
+
+import React, { FormEvent, useState } from 'react';
+
 import Link from "next/link";
 
+type loginDataType = {
+    email: string,
+    password: string,
+}
+
 export default function LoginForm() {
+    const [inputValues, setInputValues] = useState<loginDataType>({
+        email: '',
+        password: ''
+    })
+
+    const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>)=> {
+        const { name, value } = event.target;
+        setInputValues(prevData => {
+            return {
+                ...prevData,
+                [name]: value,
+            }
+        })
+    }
+
+    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>)=> {
+        event.preventDefault();
+        console.log(inputValues);
+    }
+
     return (
         <section className="md:w-[50%] flex flex-col md:justify-center ">
             <div className="text-center mb-[50px] md:max-w-[360px] md:mx-auto ">
@@ -8,12 +37,14 @@ export default function LoginForm() {
                 <p className="text-[#667085] text-[16px] font-[400] ">Welcome back! Please enter your details.</p>
             </div>
 
-            <form className="md:max-w-[360px] md:mx-auto " >
+            <form onSubmit={handleFormSubmit} className="md:max-w-[360px] md:mx-auto " >
                 <div className="flex flex-col mb-[25px] gap-[5px] ">
                     <label htmlFor="email" className="text-[#344054] text-[14px] font-[500] ">Email</label>
                     <input 
                         type="email" 
                         name="email" 
+                        value={inputValues.email}
+                        onChange={handleFormChange}
                         id="email"
                         placeholder="Enter your email"
                         className="border-[
@@ -25,7 +56,9 @@ export default function LoginForm() {
                     <label htmlFor="password" className="text-[#344054] text-[14px] font-[500] ">Password</label>
                     <input 
                         type="password" 
-                        name="password" 
+                        name="password"
+                        value={inputValues.password}
+                        onChange={handleFormChange} 
                         id="password"
                         placeholder="Enter your password"
                         className="border-[
