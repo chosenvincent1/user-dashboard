@@ -29,11 +29,8 @@ export default function Navbar({storedUser}: NavbarProps) {
     }
   }, [isOpen]);
 
-  const userFirstName = storedUser?.firstName || 'Guest';
-  const userEmail = storedUser?.email || 'guest@example.com';
-
-  console.log(userFirstName)
-  console.log(userEmail)
+  const userFirstName = storedUser?.firstName || '';
+  const userEmail = storedUser?.email || '';
 
 
   return (
