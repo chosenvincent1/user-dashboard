@@ -1,5 +1,6 @@
 "use client"
 
+import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -16,6 +17,9 @@ export default function SignupForm() {
         password: ''
     });
 
+    const [shortPassword, setShortPassword] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
     const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>)=> {
         const { name, value } = event.target;
         setUserData(prevData => {
@@ -26,9 +30,23 @@ export default function SignupForm() {
         })
     }
 
-    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>)=> {
+    const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
-        console.log(userData);
+        try {
+            if(userData.password.length < 8) {
+                setShortPassword(true)
+            } else {
+                setShortPassword(false);
+                console.log(userData)
+            }
+
+            setIsLoading(true)
+            const response = await axios.post('https://devapi.omacart.com/signupapi/signup', userData);
+
+            console.log(response);
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
@@ -39,7 +57,7 @@ export default function SignupForm() {
 
             <form onSubmit={handleFormSubmit} className="md:max-w-[360px] md:mx-auto md:w-full " >
                 <div className="flex flex-col mb-[25px] gap-[5px] ">
-                    <label htmlFor="userName" className="text-[#344054] text-[14px] font-[500] ">Name*</label>
+                    <label htmlFor="userName" className="text-[#344054] text-[14px] font-[500] ">Name&#42;</label>
                     <input 
                         type="text" 
                         name="userName" 
@@ -54,7 +72,7 @@ export default function SignupForm() {
                 </div>
 
                 <div className="flex flex-col mb-[25px] gap-[5px] ">
-                    <label htmlFor="email" className="text-[#344054] text-[14px] font-[500] ">Email*</label>
+                    <label htmlFor="email" className="text-[#344054] text-[14px] font-[500] ">Email&#42;</label>
                     <input 
                         type="email" 
                         name="email"
@@ -69,7 +87,7 @@ export default function SignupForm() {
                 </div>
 
                 <div className="flex flex-col mb-[8px] gap-[5px] ">
-                    <label htmlFor="password" className="text-[#344054] text-[14px] font-[500] ">Password*</label>
+                    <label htmlFor="password" className="text-[#344054] text-[14px] font-[500] ">Password&#42;</label>
                     <input 
                         type="password" 
                         name="password"
@@ -82,7 +100,7 @@ export default function SignupForm() {
                     />
                 </div>
                     
-                <p className="text-[14px] font-[400] mb-[50px] ">Must be at least 8 characters</p>
+                <p className={`text-[14px] font-[400] mb-[50px] ${shortPassword && 'text-[red]'} `}>Must be at least 8 characters</p>
 
                 <div className="mb-[50px] ">
                     <button className="bg-[#27779B] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Get Started</button>

@@ -41,13 +41,13 @@ export default function Navbar() {
       >
         <VStack
           position="sticky"
-          top={80}
+          top={0}
           left={0}
           right={0}
           spacing={15}
           align="stretch"
           display={{ base: "flex", md: "none" }}
-          className="flex flex-col text-[#0A0A0A] text-left bg-[#27779B] px-[20px] pb-[30px] pt-[100px] text-[18px] w-[280px] h-auto "
+          className="flex flex-col text-[#0A0A0A] text-left bg-[#27779B] px-[20px] pb-[30px] pt-[100px] text-[18px] w-[280px] "
         >
             <Box className="relative w-[90%] mx-auto ">
                 <img 
@@ -127,12 +127,17 @@ export default function Navbar() {
 
           <Box className="flex items-center gap-[5px] ">
             <div className="flex items-center gap-[10px] text-[#fff] text-[14px]">
-                <div className="w-[50px] h-[50px] rounded-[50%] bg-[black] ">
+                <div className="w-[30px] h-[30px]  ">
+                    <img 
+                        src="/images/Ayele.png" 
+                        alt="Ayele"
+                        className="w-full h-full rounded-[50%]" 
+                    />
                 </div>
 
                 <div>
-                    <p className="text-[14px] font-[600] ">Vincent</p>
-                    <p>chosen@gmail.com</p>
+                    <p className="text-[14px] font-[600] ">Ayele Tutor Center</p>
+                    <p>ayele@tutor.com</p>
                 </div>
             </div>
             
@@ -155,12 +160,17 @@ export default function Navbar() {
         className="px-[20px] py-[25px] items-center mb-[20px] z-50 w-[100%] flex justify-between bg-[#27779B] lg:hidden" 
       >
         <Box className="lg:hidden flex items-center gap-[10px] text-[#fff] text-[14px]  ">
-            <div className="w-[50px] h-[50px] rounded-[50%] bg-[black] ">
+            <div className="w-[30px] h-[30px]  ">
+              <img 
+                  src="/images/Ayele.png" 
+                  alt="Ayele"
+                  className="w-full h-full rounded-[50%]" 
+              />
             </div>
 
             <div>
-                <p className="text-[14px] font-[600] ">Vincent</p>
-                <p>chosen@gmail.com</p>
+              <p className="text-[14px] font-[600] ">Ayele Tutor Center</p>
+              <p>ayele@tutor.com</p>
             </div>
         </Box>
 

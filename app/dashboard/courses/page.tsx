@@ -1,8 +1,8 @@
-import SideNavbar from "@/components/dashboard-component/Navbar"
+import Navbar from "@/components/dashboard-component/Navbar";
 export default function Courses() {
     return (
         <>
-            <SideNavbar />
+            <Navbar />
             <div>Coming Soon...</div>
         </>
     ) 

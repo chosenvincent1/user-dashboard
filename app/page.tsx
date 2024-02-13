@@ -1,10 +1,10 @@
-import Login from "./login/page";
-import SideNavbar from "@/components/dashboard-component/Navbar";
+import Navbar from "@/components/dashboard-component/Navbar";
+import SignUp from "./signup/page";
 
 export default function Home() {
   return (
     <main>
-      <SideNavbar />
+      <SignUp />
     </main>
   );
 }
