@@ -21,10 +21,15 @@ export default function Dashboard() {
 
     const storedUserString = typeof window !== 'undefined' ? localStorage.getItem('loggedInUser') : null;
     const storedUser = storedUserString ? JSON.parse(storedUserString) : null;
+
+    console.log('storedUser:', storedUser);
+
+    const storedUserResponse = storedUser?.response || null;
+    console.log('storedUserResponse:', storedUserResponse);
     
     return (
         <main className="lg:flex lg:items-start">
-            <Navbar storedUser={storedUser.response} />
+            <Navbar storedUser={storedUser?.response || null} />
 
             <div className="lg:bg-[#27779B] w-full ">
                 <section className="px-[20px] lg:px-[30px] bg-[#fff] lg:rounded-l-[40px] py-[30px] w-full h-full ">
