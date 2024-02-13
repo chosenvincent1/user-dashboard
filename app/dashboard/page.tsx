@@ -10,8 +10,6 @@ import { AuthContext } from '@/context/AuthContext';
 
 
 export default function Dashboard() {
-    const storedUserString = localStorage.getItem('loggedInUser');
-    const storedUser = storedUserString ? JSON.parse(storedUserString) : null;
     const { isAuth } = useContext(AuthContext);
 
     useLayoutEffect(()=> {
@@ -19,7 +17,10 @@ export default function Dashboard() {
         if(!isAuthenticated) {
             redirect('/login');
         }
-    }, [isAuth])
+    }, [isAuth]);
+
+    const storedUserString = typeof window !== 'undefined' ? localStorage.getItem('loggedInUser') : null;
+    const storedUser = storedUserString ? JSON.parse(storedUserString) : null;
     
     return (
         <main className="lg:flex lg:items-start">
