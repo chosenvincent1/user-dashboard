@@ -2,8 +2,29 @@
 
 import axios from "axios";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
+
+
+const validatePassword = (password: string): string | null => {
+    if (password.length < 8) {
+      return 'Password must be at least 8 characters';
+    }
+  
+    if (!/[A-Z]/.test(password)) {
+      return 'Password must contain at least one uppercase letter';
+    }
+  
+    if (!/[a-z]/.test(password)) {
+      return 'Password must contain at least one lowercase letter';
+    }
+  
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return 'Password must contain at least one special character';
+    }
+  
+    return null;
+};
 
 type signupData = {
     firstname: string,
@@ -22,7 +43,7 @@ export default function SignupForm() {
 
     const [shortPassword, setShortPassword] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [errorMessage, setErrorMessage] = useState<string>("");
+    const [errorMessage, setErrorMessage] = useState<string>("Must be at least 8 characters.");
 
     const router = useRouter();
 
@@ -40,8 +61,9 @@ export default function SignupForm() {
     const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
         try {
-            if(userData.password.length < 8) {
-                setShortPassword(true);
+            const passwordError = validatePassword(userData.password);
+            if (passwordError) {
+                setErrorMessage(passwordError);
                 return;
             }
 
@@ -72,7 +94,7 @@ export default function SignupForm() {
 
     return (
         <section className="md:w-[40%] px-[10px] flex flex-col md:justify-center ">
-            <div className="mb-[50px] md:max-w-[360px] mx-auto w-full">
+            <div className="mb-[30px] md:max-w-[360px] mx-auto w-full">
                 <h2 className="text-[#101828] text-[30px] font-[600] ">Sign up</h2>
             </div>
 
@@ -135,10 +157,14 @@ export default function SignupForm() {
                         className="border-[#D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
                     />
                 </div>
-                    
-                <p className={`text-[14px] font-[400] mb-[50px] ${shortPassword && 'text-[red]'} `}>Must be at least 8 characters</p>
 
-                <div className="mb-[50px] ">
+                {errorMessage && 
+                    <p className={`text-[14px] font-[400] mb-[50px] ${errorMessage && 'text-[red] font-[500] '}`}>{errorMessage}</p>
+                }
+                    
+                
+
+                <div className="mb-[30px] ">
                     {isLoading ? 
                     <button className="bg-[#27779B] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Loading...</button>
                     :
