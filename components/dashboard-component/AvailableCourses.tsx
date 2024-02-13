@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function() {
+export default function AvailableCourses() {
     return (
         <div className="lg:w-[70%] mb-[50px] lg:mb-0 ">
             <div className="flex items-center justify-between gap-[10px] mb-[20px] text-[#000] ">
