@@ -1,8 +1,26 @@
 "use client"
 
-import React, { FormEvent, useState } from 'react';
-
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from "next/link";
+
+import axios from 'axios';
+
+export interface UserDataType {
+claims?: string,
+customerId: string,
+email: string,
+firstName: string,
+id: string,
+kycStatus: boolean,
+lastName: string,
+membershipType: string,
+middleName: string
+profilePicture?: string
+roles: string
+token: string,
+usertype?: string
+}
 
 type loginDataType = {
     email: string,
@@ -10,6 +28,10 @@ type loginDataType = {
 }
 
 export default function LoginForm() {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const router = useRouter();
+
     const [inputValues, setInputValues] = useState<loginDataType>({
         email: '',
         password: ''
@@ -25,9 +47,25 @@ export default function LoginForm() {
         })
     }
 
-    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>)=> {
+    const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
-        console.log(inputValues);
+        try {
+            setIsLoading(true);
+
+            const response = await axios.post('https://devapi.omacart.com/login', inputValues);
+
+
+            if(response.data.statusCode === 200) {
+                const userData = response.data;
+                localStorage.setItem('loggedInUser', JSON.stringify(userData));
+
+                router.push('/dashboard');
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -70,17 +108,22 @@ export default function LoginForm() {
                     <div className="flex items-center gap-[10px] ">
                         <input 
                             type="checkbox" 
-                            name="" 
-                            id="" 
+                            name="rememberMe" 
+                            id="rememberMe" 
                         />
-                        <label htmlFor="" className="text-[14px] font-[500] ">Remember for 30 days</label>
+                        <label htmlFor="rememberMe" className="text-[14px] font-[500] ">Remember for 30 days</label>
                     </div>
 
                     <a href="" className="text-[14px] text-[#6941C6] font-[600] ">Forgot Password?</a>
                 </div>
 
                 <div className="mb-[50px] ">
+                {isLoading ? 
+                    <button className="bg-[#27779B] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Loading...</button>
+                    :
                     <button className="bg-[#27779B] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Log In</button>
+                }
+                    {/* <button className="bg-[#27779B] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Log In</button> */}
                 </div>
 
                 <div className="flex gap-[10px] justify-center text-[14px] ">

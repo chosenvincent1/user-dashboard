@@ -2,23 +2,30 @@
 
 import axios from "axios";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
 
 type signupData = {
-    userName: string,
+    firstname: string,
+    lastname: string,
     email: string,
     password: string,
 }
 
 export default function SignupForm() {
     const [ userData, setUserData ] = useState<signupData>({
-        userName: '',
+        firstname: '',
+        lastname: '',
         email: '',
         password: ''
     });
 
     const [shortPassword, setShortPassword] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>("");
+
+    const router = useRouter();
+
 
     const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>)=> {
         const { name, value } = event.target;
@@ -34,18 +41,32 @@ export default function SignupForm() {
         event.preventDefault();
         try {
             if(userData.password.length < 8) {
-                setShortPassword(true)
-            } else {
-                setShortPassword(false);
-                console.log(userData)
+                setShortPassword(true);
+                return;
             }
 
-            setIsLoading(true)
-            const response = await axios.post('https://devapi.omacart.com/signupapi/signup', userData);
+            setShortPassword(false);
+            setIsLoading(true);
 
-            console.log(response);
+
+            const response = await axios.post('https://devapi.omacart.com/signup', userData);
+
+            if(response.data.statusCode === 200) {
+                router.push('/login');
+                setUserData({
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    password: ''
+                });
+
+                return;
+            }
+
         } catch (error) {
             console.error(error)
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -57,14 +78,29 @@ export default function SignupForm() {
 
             <form onSubmit={handleFormSubmit} className="md:max-w-[360px] md:mx-auto md:w-full " >
                 <div className="flex flex-col mb-[25px] gap-[5px] ">
-                    <label htmlFor="userName" className="text-[#344054] text-[14px] font-[500] ">Name&#42;</label>
+                    <label htmlFor="firstname" className="text-[#344054] text-[14px] font-[500] ">First Name&#42;</label>
                     <input 
                         type="text" 
-                        name="userName" 
-                        value={userData.userName}
+                        name="firstname" 
+                        value={userData.firstname}
                         onChange={handleFormChange}
-                        id="userName"
-                        placeholder="Enter your name"
+                        id="firstname"
+                        placeholder="Enter your firstname"
+                        required
+                        className="border-[
+                            #D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
+                    />
+                </div>
+
+                <div className="flex flex-col mb-[25px] gap-[5px] ">
+                    <label htmlFor="lastname" className="text-[#344054] text-[14px] font-[500] ">Last Name&#42;</label>
+                    <input 
+                        type="text" 
+                        name="lastname" 
+                        value={userData.lastname}
+                        onChange={handleFormChange}
+                        id="lastname"
+                        placeholder="Enter your lastname"
                         required
                         className="border-[
                             #D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
@@ -103,7 +139,11 @@ export default function SignupForm() {
                 <p className={`text-[14px] font-[400] mb-[50px] ${shortPassword && 'text-[red]'} `}>Must be at least 8 characters</p>
 
                 <div className="mb-[50px] ">
+                    {isLoading ? 
+                    <button className="bg-[#27779B] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Loading...</button>
+                    :
                     <button className="bg-[#27779B] py-[10px] px-[18px] w-full text-[#fff] text-[16px] font-[600] rounded-[8px] ">Get Started</button>
+                    }
                 </div>
 
                 <div className="flex gap-[10px] justify-center text-[14px] ">

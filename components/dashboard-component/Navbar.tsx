@@ -10,9 +10,13 @@ import Link from "next/link";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { UserDataType } from "../auths/login-component/login-form";
 
+interface NavbarProps {
+  storedUser: UserDataType;
+}
 
-export default function Navbar() {
+export default function Navbar({storedUser}: NavbarProps) {
   const { isOpen, onToggle } = useDisclosure();
   const pathname = usePathname();
 
@@ -136,8 +140,8 @@ export default function Navbar() {
                 </div>
 
                 <div>
-                    <p className="text-[14px] font-[600] ">Ayele Tutor Center</p>
-                    <p>ayele@tutor.com</p>
+                  <p className="text-[14px] font-[600] ">{storedUser.firstName}</p>
+                  <p>{storedUser.email}</p>
                 </div>
             </div>
             
@@ -169,8 +173,8 @@ export default function Navbar() {
             </div>
 
             <div>
-              <p className="text-[14px] font-[600] ">Ayele Tutor Center</p>
-              <p>ayele@tutor.com</p>
+              <p className="text-[14px] font-[600] ">{storedUser.firstName}</p>
+              <p>{storedUser.email}</p>
             </div>
         </Box>
 
