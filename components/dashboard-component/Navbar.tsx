@@ -29,6 +29,13 @@ export default function Navbar({storedUser}: NavbarProps) {
     }
   }, [isOpen]);
 
+  const userFirstName = storedUser?.firstName || 'Guest';
+  const userEmail = storedUser?.email || 'guest@example.com';
+
+  console.log(userFirstName)
+  console.log(userEmail)
+
+
   return (
     <Flex
       as="nav"
@@ -151,8 +158,8 @@ export default function Navbar({storedUser}: NavbarProps) {
                 </div>
 
                 <div>
-                  <p className="text-[14px] font-[600] ">{storedUser.firstName}</p>
-                  <p>{storedUser.email}</p>
+                  <p className="text-[14px] font-[600] ">{userFirstName}</p>
+                  <p>{userEmail}</p>
                 </div>
             </div>
             
@@ -187,8 +194,8 @@ export default function Navbar({storedUser}: NavbarProps) {
             </div>
 
             <div>
-              <p className="text-[14px] font-[600] ">{storedUser.firstName}</p>
-              <p>{storedUser.email}</p>
+              <p className="text-[14px] font-[600] ">{userFirstName}</p>
+              <p>{userEmail}</p>
             </div>
         </Box>
 
