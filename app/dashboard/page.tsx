@@ -21,11 +21,6 @@ export default function Dashboard() {
 
     const storedUserString = typeof window !== 'undefined' ? localStorage.getItem('loggedInUser') : null;
     const storedUser = storedUserString ? JSON.parse(storedUserString) : null;
-
-    console.log('storedUser:', storedUser);
-
-    const storedUserResponse = storedUser?.response || null;
-    console.log('storedUserResponse:', storedUserResponse);
     
     return (
         <main className="lg:flex lg:items-start">
