@@ -29,6 +29,7 @@ type loginDataType = {
 
 export default function LoginForm() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const router = useRouter();
 
@@ -51,6 +52,12 @@ export default function LoginForm() {
         event.preventDefault();
         try {
             setIsLoading(true);
+
+            if (!inputValues.email || !inputValues.password) {
+                setErrorMessage('Email and password are required.');
+                setIsLoading(false);
+                return;
+              }
 
             const response = await axios.post('https://devapi.omacart.com/login', inputValues);
 
@@ -102,7 +109,11 @@ export default function LoginForm() {
                         className="border-[
                             #D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
                     />
+                    {errorMessage &&
+                        <p className='text-[14px] text-[red] text-[500] '>{errorMessage}</p>
+                    }
                 </div>
+
 
                 <div className="mb-[20px] flex justify-between gap-[20px] ">
                     <div className="flex items-center gap-[10px] ">

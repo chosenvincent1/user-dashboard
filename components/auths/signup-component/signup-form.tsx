@@ -41,7 +41,6 @@ export default function SignupForm() {
         password: ''
     });
 
-    const [shortPassword, setShortPassword] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>("Must be at least 8 characters.");
 
@@ -67,9 +66,7 @@ export default function SignupForm() {
                 return;
             }
 
-            setShortPassword(false);
             setIsLoading(true);
-
 
             const response = await axios.post('https://devapi.omacart.com/signup', userData);
 

@@ -2,12 +2,10 @@
 
 import { useLayoutEffect } from "react";
 import { redirect } from "next/navigation";
-
 import Navbar from "@/components/dashboard-component/Navbar";
 import Statistics from "@/components/dashboard-component/Statistics";
 import AvailableCourses from "@/components/dashboard-component/AvailableCourses";
 import Activities from "@/components/dashboard-component/Activities";
-
 import { isAuthenticated } from "@/Utils/Auth";
 
 
