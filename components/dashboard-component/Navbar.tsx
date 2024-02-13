@@ -146,7 +146,7 @@ export default function Navbar({storedUser}: NavbarProps) {
             <div className="flex items-center gap-[10px] text-[#fff] text-[14px]">
                 <div className="w-[30px] h-[30px]  ">
                   <Image 
-                    src="/images/Ayele.png" 
+                    src="/images/ayele.png" 
                     alt="Ayele"
                     className="w-full h-full rounded-[50%]"
                     width={30} 
@@ -182,7 +182,7 @@ export default function Navbar({storedUser}: NavbarProps) {
         <Box className="lg:hidden flex items-center gap-[10px] text-[#fff] text-[14px]  ">
             <div className="w-[30px] h-[30px]  ">
               <Image 
-                src="/images/Ayele.png" 
+                src="/images/ayele.png" 
                 alt="Ayele"
                 className="w-full h-full rounded-[50%]" 
                 width={20} 
