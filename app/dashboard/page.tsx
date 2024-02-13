@@ -19,7 +19,7 @@ export default function Dashboard() {
         if(!isAuthenticated) {
             redirect('/login');
         }
-    }, [])
+    }, [isAuth])
     
     return (
         <main className="lg:flex lg:items-start">

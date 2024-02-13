@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function() {
     return (
@@ -11,11 +12,14 @@ export default function() {
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 ">
                 <div className="shadow rounded-t-[12px] pb-[30px] ">
-                    <img 
+                    <Image
                         src="/images/laptop.png" 
                         alt="Laptop" 
-                        className="w-full mb-[10px] "
+                        className="w-full h-auto mb-[10px] "
+                        width={50}
+                        height={50}
                     />
+
 
                     <div className="px-[15px] flex flex-col gap-[15px] ">
                         <h3 className="text-[18px] font-[600] text-[#101828] ">Web Development</h3>
@@ -27,10 +31,12 @@ export default function() {
                 </div>
 
                 <div className="shadow rounded-t-[12px] pb-[30px] ">
-                    <img 
+                    <Image
                         src="/images/laptop.png" 
                         alt="Laptop" 
-                        className="w-full mb-[10px] "
+                        className="w-full h-auto mb-[10px] "
+                        width={50}
+                        height={50}
                     />
 
                     <div className="px-[15px] flex flex-col gap-[15px] ">

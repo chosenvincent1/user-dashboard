@@ -11,6 +11,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { UserDataType } from "../auths/login-component/login-form";
+import Image from "next/image";
 
 interface NavbarProps {
   storedUser: UserDataType;
@@ -54,77 +55,85 @@ export default function Navbar({storedUser}: NavbarProps) {
           className="flex flex-col text-[#0A0A0A] text-left bg-[#27779B] px-[20px] pb-[30px] pt-[100px] text-[18px] w-[300px] "
         >
             <Box className="relative w-[90%] mx-auto ">
-                <img 
-                    src="/images/search.png" 
-                    alt="Search Icon" 
-                    className="absolute top-[50%] left-[7px] transform translate-y-[-50%] w-[20px] h-[20px] "
-                />
+              <Image 
+                src="/images/search.png" 
+                alt="Search Icon" 
+                className="absolute top-[50%] left-[7px] transform translate-y-[-50%] w-[20px] h-[20px] " 
+                width={20} 
+                height={20} 
+              />
 
-                <input type="text" placeholder="Search" className="bg-[#475467] py-[8px] pl-[35px] placeholder:text-[#fff] placeholder:text-[16px] rounded-[6px] outline-0 text-[#fff] w-full " />
+              <input type="text" placeholder="Search" className="bg-[#475467] py-[8px] pl-[35px] placeholder:text-[#fff] placeholder:text-[16px] rounded-[6px] outline-0 text-[#fff] w-full " />
             </Box>
 
           <Link onClick={onToggle} href="/dashboard">
             <Box className={`flex items-center ${pathname === '/dashboard' && 'bg-[#344054] rounded-[6px]'} py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/home-line.png" 
-                    alt="Home Icon" 
-                    className="h-[24px] w-[24px] "
-                />
-                <p>Home</p>
+              <Image 
+                src="/images/home-line.png" 
+                alt="Home Icon"  
+                width={24} 
+                height={24} 
+              />
+              <p>Home</p>
             </Box>
           </Link>
 
           <Link onClick={onToggle} href="/dashboard/courses">
             <Box className={`flex items-center ${pathname === '/dashboard/courses' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/bar-chart-square-02.png" 
-                    alt="Courses Icon" 
-                    className="h-[24px] w-[24px] "
-                />
-                <p>Courses</p>
+              <Image 
+                src="/images/bar-chart-square-02.png" 
+                alt="Courses Icon"  
+                width={24} 
+                height={24} 
+              />
+              <p>Courses</p>
             </Box>
           </Link>
 
           <Link onClick={onToggle} href="/dashboard/students">
             <Box className={`flex items-center ${pathname === '/dashboard/students' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/users-01.png" 
-                    alt="User Icon" 
-                    className="h-[24px] w-[24px] "
-                />
-                <p>Students</p>
+              <Image 
+                src="/images/users-01.png" 
+                alt="User Icon" 
+                width={24} 
+                height={24} 
+              />
+              <p>Students</p>
             </Box>
           </Link>
 
           <Link onClick={onToggle} href="/dashboard/wallet" className=" mb-[100px] ">
             <Box className={`flex items-center ${pathname === '/dashboard/wallet' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/layers-three-01.png" 
-                    alt="Wallet Icon" 
-                    className="h-[24px] w-[24px] "
-                />
-                <p>Wallet</p>
+              <Image 
+                src="/images/layers-three-01.png" 
+                alt="Wallet Icon"
+                width={24} 
+                height={24} 
+              />
+              <p>Wallet</p>
             </Box>
           </Link>
 
           <Link onClick={onToggle} href="/dashboard/support">
             <Box className={`flex items-center ${pathname === '/dashboard/support' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/life-buoy-01.png" 
-                    alt="Home Icon" 
-                    className="h-[24px] w-[24px] "
-                />
+              <Image 
+                  src="/images/life-buoy-01.png" 
+                  alt="Buoy Icon" 
+                  width={24} 
+                  height={24} 
+              />
                 <p>Support</p>
             </Box>
           </Link>
 
           <Link onClick={onToggle} href="/dashboard/setting" className=" mb-[20px] border-b-[#344054] border-b-[1px] pb-[20px] ">
             <Box className={`flex items-center ${pathname === '/dashboard/settings' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/settings-01.png" 
-                    alt="Home Icon" 
-                    className="h-[23px] w-[24px] "
-                />
+              <Image 
+                  src="/images/settings-01.png" 
+                  alt="Settings Icon" 
+                  width={24} 
+                  height={24} 
+              />
                 <p>Setting</p>
             </Box>
           </Link>
@@ -132,11 +141,13 @@ export default function Navbar({storedUser}: NavbarProps) {
           <Box className="flex items-start gap-[5px] ">
             <div className="flex items-center gap-[10px] text-[#fff] text-[14px]">
                 <div className="w-[30px] h-[30px]  ">
-                    <img 
-                        src="/images/Ayele.png" 
-                        alt="Ayele"
-                        className="w-full h-full rounded-[50%]" 
-                    />
+                  <Image 
+                    src="/images/Ayele.png" 
+                    alt="Ayele"
+                    className="w-full h-full rounded-[50%]"
+                    width={30} 
+                    height={30} 
+                  />
                 </div>
 
                 <div>
@@ -146,11 +157,12 @@ export default function Navbar({storedUser}: NavbarProps) {
             </div>
             
             <Box className=" text-[20px] font-[600] cursor-pointer ">
-                <img 
-                    src="/images/log-out-01.png" 
-                    alt="Home Icon" 
-                    className="h-[25px] w-[25px] "
-                />
+              <Image 
+                src="/images/log-out-01.png"
+                alt="Log Out Icon"
+                width={25} 
+                height={25} 
+              />
             </Box>
 
           </Box>
@@ -165,10 +177,12 @@ export default function Navbar({storedUser}: NavbarProps) {
       >
         <Box className="lg:hidden flex items-center gap-[10px] text-[#fff] text-[14px]  ">
             <div className="w-[30px] h-[30px]  ">
-              <img 
-                  src="/images/Ayele.png" 
-                  alt="Ayele"
-                  className="w-full h-full rounded-[50%]" 
+              <Image 
+                src="/images/Ayele.png" 
+                alt="Ayele"
+                className="w-full h-full rounded-[50%]" 
+                width={20} 
+                height={20} 
               />
             </div>
 
@@ -199,10 +213,12 @@ export default function Navbar({storedUser}: NavbarProps) {
           className="flex lg:hidden text-[#0A0A0A] text-left bg-[#27779B] px-[20px] py-[30px] text-[18px] w-[80%] h-auto "
         >
             <Box className="relative ">
-                <img 
-                    src="/images/search.png" 
-                    alt="Search Icon" 
-                    className="absolute top-[50%] left-[7px] transform translate-y-[-50%] w-[20px] h-[20px] "
+                <Image 
+                  src="/images/search.png" 
+                  alt="Search Icon" 
+                  className="absolute top-[50%] left-[7px] transform translate-y-[-50%] w-[20px] h-[20px] "
+                  width={20} 
+                  height={20} 
                 />
 
                 <input type="text" placeholder="Search" className="bg-[#475467] py-[8px] pl-[35px] placeholder:text-[#fff] placeholder:text-[16px] rounded-[6px] outline-0 text-[#fff] w-full " />
@@ -210,10 +226,11 @@ export default function Navbar({storedUser}: NavbarProps) {
 
           <Link onClick={onToggle} href="/dashboard">
             <Box className={`flex items-center ${pathname === '/dashboard' && 'bg-[#344054] rounded-[6px]'} py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/home-line.png" 
-                    alt="Home Icon" 
-                    className="h-[24px] w-[24px] "
+                <Image 
+                  src="/images/home-line.png" 
+                  alt="Home Icon"
+                  width={24} 
+                  height={24} 
                 />
                 <p>Home</p>
             </Box>
@@ -221,21 +238,24 @@ export default function Navbar({storedUser}: NavbarProps) {
 
           <Link onClick={onToggle} href="/dashboard/courses">
             <Box className={`flex items-center ${pathname === '/dashboard/courses' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/bar-chart-square-02.png" 
-                    alt="Courses Icon" 
-                    className="h-[24px] w-[24px] "
+                <Image 
+                  src="/images/bar-chart-square-02.png" 
+                  alt="Courses Icon" 
+                  width={24} 
+                  height={24} 
                 />
+
                 <p>Courses</p>
             </Box>
           </Link>
 
           <Link onClick={onToggle} href="/dashboard/students">
             <Box className={`flex items-center ${pathname === '/dashboard/students' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/users-01.png" 
-                    alt="User Icon" 
-                    className="h-[24px] w-[24px] "
+                <Image 
+                  src="/images/users-01.png" 
+                  alt="User Icon"
+                  width={24} 
+                  height={24} 
                 />
                 <p>Students</p>
             </Box>
@@ -243,21 +263,25 @@ export default function Navbar({storedUser}: NavbarProps) {
 
           <Link onClick={onToggle} href="/dashboard/wallet" className=" mb-[30px] ">
             <Box className={`flex items-center ${pathname === '/dashboard/wallet' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/layers-three-01.png" 
-                    alt="Wallet Icon" 
-                    className="h-[24px] w-[24px] "
+                <Image 
+                  src="/images/layers-three-01.png" 
+                  alt="Wallet Icon"
+                  width={24} 
+                  height={24} 
                 />
+
                 <p>Wallet</p>
             </Box>
           </Link>
 
           <Link onClick={onToggle} href="/dashboard/support">
             <Box className={`flex items-center ${pathname === '/dashboard/support' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/life-buoy-01.png" 
-                    alt="Home Icon" 
-                    className="h-[24px] w-[24px] "
+
+                <Image 
+                  src="/images/life-buoy-01.png" 
+                  alt="Buoy Icon" 
+                  width={24} 
+                  height={24} 
                 />
                 <p>Support</p>
             </Box>
@@ -265,22 +289,26 @@ export default function Navbar({storedUser}: NavbarProps) {
 
           <Link onClick={onToggle} href="/dashboard/setting" className=" mb-[20px] border-b-[#344054] border-b-[1px] pb-[20px] ">
             <Box className={`flex items-center ${pathname === '/dashboard/settings' && 'bg-[#344054]'} rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[16px] font-[600] `}>
-                <img 
-                    src="/images/settings-01.png" 
-                    alt="Home Icon" 
-                    className="h-[23px] w-[24px] "
+                <Image 
+                  src="/images/settings-01.png" 
+                  alt="Settings Icon" 
+                  width={24} 
+                  height={24} 
                 />
+
                 <p>Setting</p>
             </Box>
           </Link>
 
           <Link onClick={onToggle} href="" className=" ">
             <Box className="flex items-center rounded-[6px] py-[8px] px-[12px] text-[#fff] gap-[10px] text-[20px] font-[600] ">
-                <img 
-                    src="/images/log-out-01.png" 
-                    alt="Home Icon" 
-                    className="h-[25px] w-[25px] "
+                <Image 
+                  src="/images/log-out-01.png" 
+                  alt="Logout Icon"  
+                  width={24} 
+                  height={24} 
                 />
+
                 <p>Log Out</p>
             </Box>
           </Link>

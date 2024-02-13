@@ -1,3 +1,4 @@
+import Image from "next/image"
 
 export default function Activities() {
     return (
@@ -7,10 +8,12 @@ export default function Activities() {
             <div className="flex flex-col gap-[10px] ">
                 <div className="flex items-center gap-[5px] ">
                     <div className="w-[30px] h-[30px]  ">
-                        <img 
+                        <Image 
                             src="/images/demi.png" 
                             alt="Demi"
                             className="w-full h-full rounded-[50%]" 
+                            width={50}
+                            height={50}
                         />
                     </div>
 
@@ -22,10 +25,12 @@ export default function Activities() {
 
                 <div className="flex items-center gap-[5px] ">
                     <div className="w-[30px] h-[30px]  ">
-                        <img 
+                        <Image 
                             src="/images/aliah.png" 
                             alt="Aliah"
                             className="w-full h-full rounded-[50%]" 
+                            width={50}
+                            height={50}
                         />
                     </div>
 
@@ -38,10 +43,12 @@ export default function Activities() {
 
                 <div className="flex items-center gap-[5px] ">
                     <div className="w-[30px] h-[30px]  ">
-                        <img 
+                        <Image 
                             src="/images/lana.png" 
                             alt="Lana"
                             className="w-full h-full rounded-[50%]" 
+                            width={50}
+                            height={50}
                         />
                     </div>
 
