@@ -1,4 +1,4 @@
-# Project Name
+# User Dashboard
 This is a simple user dashboard built with next.js
 
 ## Technologies Used
@@ -24,9 +24,9 @@ Follow these steps to run the project locally:
    ```
 
 2. Navigate to your project directory:
-  ```bash
-  cd your-repo
-```
+   ```bash
+   cd your-repo
+   ```
 
 3. Install dependencies:
    ```bash
