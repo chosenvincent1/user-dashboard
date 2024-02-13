@@ -51,7 +51,7 @@ export default function Navbar({storedUser}: NavbarProps) {
           spacing={15}
           align="stretch"
           display={{ base: "flex", md: "none" }}
-          className="flex flex-col text-[#0A0A0A] text-left bg-[#27779B] px-[20px] pb-[30px] pt-[100px] text-[18px] w-[280px] "
+          className="flex flex-col text-[#0A0A0A] text-left bg-[#27779B] px-[20px] pb-[30px] pt-[100px] text-[18px] w-[300px] "
         >
             <Box className="relative w-[90%] mx-auto ">
                 <img 
@@ -129,7 +129,7 @@ export default function Navbar({storedUser}: NavbarProps) {
             </Box>
           </Link>
 
-          <Box className="flex items-center gap-[5px] ">
+          <Box className="flex items-start gap-[5px] ">
             <div className="flex items-center gap-[10px] text-[#fff] text-[14px]">
                 <div className="w-[30px] h-[30px]  ">
                     <img 
@@ -145,7 +145,7 @@ export default function Navbar({storedUser}: NavbarProps) {
                 </div>
             </div>
             
-            <Box className=" py-[8px] px-[12px] text-[20px] font-[600] ">
+            <Box className=" text-[20px] font-[600] cursor-pointer ">
                 <img 
                     src="/images/log-out-01.png" 
                     alt="Home Icon" 

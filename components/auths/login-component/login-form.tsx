@@ -1,25 +1,26 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
+import { AuthContext } from '@/context/AuthContext';
 
 import axios from 'axios';
 
 export interface UserDataType {
-claims?: string,
-customerId: string,
-email: string,
-firstName: string,
-id: string,
-kycStatus: boolean,
-lastName: string,
-membershipType: string,
-middleName: string
-profilePicture?: string
-roles: string
-token: string,
-usertype?: string
+    claims?: string,
+    customerId: string,
+    email: string,
+    firstName: string,
+    id: string,
+    kycStatus: boolean,
+    lastName: string,
+    membershipType: string,
+    middleName: string
+    profilePicture?: string
+    roles: string
+    token: string,
+    usertype?: string
 }
 
 type loginDataType = {
@@ -30,6 +31,8 @@ type loginDataType = {
 export default function LoginForm() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
+
+    const { setIsAuth } = useContext(AuthContext);
 
     const router = useRouter();
 
@@ -51,13 +54,13 @@ export default function LoginForm() {
     const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
         try {
-            setIsLoading(true);
 
             if (!inputValues.email || !inputValues.password) {
                 setErrorMessage('Email and password are required.');
                 setIsLoading(false);
                 return;
-              }
+            }
+            setIsLoading(true);
 
             const response = await axios.post('https://devapi.omacart.com/login', inputValues);
 
@@ -65,6 +68,14 @@ export default function LoginForm() {
             if(response.data.statusCode === 200) {
                 const userData = response.data;
                 localStorage.setItem('loggedInUser', JSON.stringify(userData));
+
+                setIsLoading(false);
+                setIsAuth(true);
+
+                setInputValues({
+                    email: '',
+                    password: ''
+                });
 
                 router.push('/dashboard');
             }

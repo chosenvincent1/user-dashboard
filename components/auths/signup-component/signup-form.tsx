@@ -136,8 +136,7 @@ export default function SignupForm() {
                         id="email"
                         required
                         placeholder="Enter your email"
-                        className="border-[
-                            #D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
+                        className="border-[#D0D5DD] border-[1px] py-[10px] px-[14px] rounded-[8px] outline-0 "
                     />
                 </div>
 
@@ -156,7 +155,7 @@ export default function SignupForm() {
                 </div>
 
                 {errorMessage && 
-                    <p className={`text-[14px] font-[400] mb-[50px] ${errorMessage && 'text-[red] font-[500] '}`}>{errorMessage}</p>
+                    <p className="text-[14px] font-[400] mb-[50px] ">{errorMessage}</p>
                 }
                     
                 

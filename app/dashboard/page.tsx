@@ -1,21 +1,22 @@
 "use client"
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useContext } from "react";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/dashboard-component/Navbar";
 import Statistics from "@/components/dashboard-component/Statistics";
 import AvailableCourses from "@/components/dashboard-component/AvailableCourses";
 import Activities from "@/components/dashboard-component/Activities";
-import { isAuthenticated } from "@/Utils/Auth";
+import { AuthContext } from '@/context/AuthContext';
 
 
 export default function Dashboard() {
     const storedUserString = localStorage.getItem('loggedInUser');
     const storedUser = storedUserString ? JSON.parse(storedUserString) : null;
+    const { isAuth } = useContext(AuthContext);
 
     useLayoutEffect(()=> {
-        const isAuth = isAuthenticated;
-        if(!isAuth) {
+        const isAuthenticated = isAuth;
+        if(!isAuthenticated) {
             redirect('/login');
         }
     }, [])
