@@ -46,7 +46,7 @@ export default function Navbar({storedUser}: NavbarProps) {
         display={{ base: "none", md: "flex" }}
         width={{ base: "full", md: "auto" }}
         alignItems="center"
-        className="lg:text-[#0A0A0A] lg:text-[18px] lg:font-[400] hidden lg:flex "
+        className="lg:text-[#0A0A0A] lg:text-[18px] lg:h-[100vh] lg:font-[400] hidden lg:flex "
       >
         <VStack
           position="sticky"
@@ -55,8 +55,9 @@ export default function Navbar({storedUser}: NavbarProps) {
           right={0}
           spacing={15}
           align="stretch"
+          height="100%"
           display={{ base: "flex", md: "none" }}
-          className="flex flex-col text-[#0A0A0A] text-left bg-[#27779B] px-[20px] pb-[30px] pt-[100px] text-[18px] w-[300px] "
+          className="flex flex-col text-[#0A0A0A] text-left bg-[#27779B] px-[20px] pb-[30px] pt-[50px] text-[18px] w-[300px] "
         >
             <Box className="relative w-[90%] mx-auto ">
               <Image 
@@ -142,7 +143,7 @@ export default function Navbar({storedUser}: NavbarProps) {
             </Box>
           </Link>
 
-          <Box className="flex items-start gap-[5px] ">
+          <Box className="flex items-start gap-[5px] mt-auto ">
             <div className="flex items-center gap-[10px] text-[#fff] text-[14px]">
                 <div className="w-[30px] h-[30px]  ">
                   <Image 
@@ -214,7 +215,7 @@ export default function Navbar({storedUser}: NavbarProps) {
           spacing={15}
           align="stretch"
           display={{ base: "flex", md: "none" }}
-          className="flex lg:hidden text-[#0A0A0A] text-left bg-[#27779B] px-[20px] py-[30px] text-[18px] w-[80%] h-auto "
+          className="flex lg:hidden text-[#0A0A0A] text-left bg-[#27779B] px-[20px] py-[30px] text-[18px] w-[80%] h-[100vh] "
         >
             <Box className="relative ">
                 <Image 

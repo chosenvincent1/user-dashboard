@@ -31,12 +31,13 @@ export default function Dashboard() {
                     
                     <Statistics />
 
-                    <div className="flex flex-col lg:flex-row lg:gap-[30px]">
+                    <div className="flex flex-col lg:flex-row lg:gap-[30px] 2xl:gap-[50px]">
                         <AvailableCourses />
                         <Activities />
                     </div>
                 </section>
             </div>
         </main>
+
     )
 }
